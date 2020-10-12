@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -28,6 +28,9 @@ var DOMObject = (function () {
     };
     DOMObject.prototype.draw = function () {
         this.div.style.transform = "translate(" + this.x + "px, " + this.y + "px) scale(" + this.scale + ")";
+    };
+    DOMObject.prototype.getDiv = function () {
+        return this.div;
     };
     return DOMObject;
 }());
@@ -60,6 +63,8 @@ var DraggableDomObject = (function (_super) {
         var event = new GameEvent(e);
         this.x = event.clientX - this.offSetX;
         this.y = event.clientY - this.offSetY;
+        console.log('x', this.x);
+        console.log('y', this.y);
         this.draw();
     };
     DraggableDomObject.prototype.stopDrag = function (e) {
@@ -79,15 +84,22 @@ var Game = (function () {
         if ('ontouchstart' in window) {
             Settings.enableTouch();
         }
-        var positions = [{ x: 100, y: 0, img: "robota.png" },
-            { x: 20, y: 140, img: "robotb.png" },
-            { x: 100, y: 290, img: "robotc.png" },
-            { x: 100, y: 390, img: "robotd.png" },
-            { x: 20, y: 520, img: "robote.png" },
-            { x: 100, y: 690, img: "robotf.png" }];
-        for (var _i = 0, positions_1 = positions; _i < positions_1.length; _i++) {
-            var p = positions_1[_i];
-            new DraggableDomObject(p.x, p.y, p.img, 0, 0);
+        var positions = [
+            { x: 10, y: 10, img: "robotbdb.png" },
+            { x: 10, y: 90, img: "robotbdb.png" },
+            { x: 10, y: 175, img: "robotbdb.png" },
+            { x: 10, y: 425, img: "robotbdb.png" },
+            { x: 10, y: 510, img: "robotbdb.png" },
+            { x: 510, y: 10, img: "robotbdb.png" },
+            { x: 510, y: 90, img: "robotbdb.png" },
+            { x: 510, y: 340, img: "robotbdb.png" },
+            { x: 510, y: 425, img: "robotbdb.png" },
+            { x: 510, y: 510, img: "robotbdb.png" },
+        ];
+        for (var p = 0; p < positions.length; p++) {
+            var temp = new DraggableDomObject(positions[p].x, positions[p].y, positions[p].img, 0, 0);
+            temp.getDiv().style.filter = "hue-rotate(" + ((p + 1) * (360 / positions.length)) + "deg)";
+            temp.getDiv().setAttribute("number", "" + (p + 1));
         }
     }
     return Game;

@@ -31,4 +31,8 @@ class DOMObject {
     public draw(): void {
         this.div.style.transform = `translate(${this.x}px, ${this.y}px) scale(${this.scale})`;
     }
+
+    public getDiv() : HTMLElement{
+        return this.div;
+    }
 }

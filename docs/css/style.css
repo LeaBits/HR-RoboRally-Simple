@@ -16,7 +16,7 @@ board {
     -webkit-user-select: none;
     user-select:none;
     transform-origin: 0% 0%;
-    background-image: url(../images/board.png);
+    background-image: url(../images/boardbdb.jpg);
 }
 
 robot {
@@ -26,6 +26,21 @@ robot {
     box-sizing: border-box;
     background-repeat: no-repeat;
     cursor: url(../images/handcursor), pointer;
-    background-size:contain;
-    width: 64px; height: 94px;
+    background-size: auto 60px;
+    /*width: 64px; height: 94px;*/
+    width: 60px; height: 60px;
+}
+
+robot:after {
+    content: attr(number);
+    font-weight: bold;
+    position:absolute;
+    top: 10px;
+    left: 5px;
+    background: #fff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 15px;
 }

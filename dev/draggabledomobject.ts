@@ -55,6 +55,9 @@ class DraggableDomObject extends DOMObject{
 
         this.x = event.clientX - this.offSetX;
         this.y = event.clientY - this.offSetY;
+
+        console.log('x', this.x);
+        console.log('y', this.y)
         
         this.draw();
     }
